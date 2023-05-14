@@ -1,0 +1,32 @@
+name: Action
+on: [push]
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello
+        run: echo "Hello"
+      - name: Print Ubuntu version
+        run: cat /etc/lsb-release
+      - name: Print commit SHA
+        run: echo ${{ github.sha }}
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print files in repo
+        run: ls
+      - name: Run test.sh
+        run: bash test.sh
+  job3:
+    runs-on: ubuntu-latest
+    env:
+      FIRST_NAME: Elior
+    steps:
+      - name: Print First Name
+        run: echo $FIRST_NAME
+      - name: Print Last Name
+        run: |
+          LAST_NAME="Sade"
+          echo $LAST_NAME
+      - name: Print phone number
+        run: echo ${{ secrets.PHONE_NUMBER }}
